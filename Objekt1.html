@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="no" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Objekt 1</title>
+  </head>
+  <body>
+    Navn: <input type="text" id="navn" /> <br />Vekt:
+    <input type="number" id="vekt" /> <br />Høyde:
+    <input type="number" id="hoyde" /><br />
+    <button onclick="leggTil()">Legg til person</button>
+
+    <br />
+    <br />
+    <div id="utdata"></div>
+    <script type="text/javascript">
+      class Person {
+        constructor(navn, hoyde, vekt) {
+          this.navn = navn;
+          this.vekt = vekt;
+          //this.vekt = hoyde < 10 ? hoyde : hoyde / 100;
+
+          //Kunne også gjort dette:
+          if (hoyde < 10) {
+            this.hoyde = hoyde;
+          } else {
+            this.hoyde = hoyde / 100;
+          }
+        }
+        set navn(nyttNavn) {
+          if (nyttNavn.length < 2) {
+            alert("Du har skrevet et for kort navn");
+            return;
+          } else {
+            this._navn = nyttNavn;
+          }
+        }
+        get navn() {
+          return this.navn;
+        }
+        beregnBMI() {
+          return this.vekt / (this.hoyde * this.hoyde);
+        }
+        endreNavn(nyttNavn) {
+          this.navn = nyttNavn;
+        }
+      }
+
+      function leggTil() {
+        let navn = document.getElementById("navn").value;
+        let vekt = document.getElementById("vekt").value;
+        let hoyde = document.getElementById("hoyde").value;
+
+        //let p = new Person()
+
+        let p = new Person(navn, hoyde, vekt);
+        //liste.push(p);
+
+        document.getElementById("utdata").innerHTML =
+          p.navn + " er navnet og personen veier ";
+      }
+      //  let heida = new Person("HEIÅ", 1.8, 80);
+      // let lise = new Person("olsen", 1.65, 60);
+    </script>
+  </body>
+</html>

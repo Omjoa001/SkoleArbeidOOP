@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="no" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Arveegenskaper</title>
+  </head>
+  <body>
+    <div id="utdata"></div>
+    <script type="text/javascript">
+      class Husdyr {
+        constructor(navn) {
+          this.navn = navn;
+        }
+        snakk() {
+          return " lager en lyd";
+        }
+      }
+
+      class Hund extends Husdyr {
+        snakk() {
+          return " sier voff";
+        }
+      }
+
+      class Rottweiler extends Hund {
+        snakk() {
+          return " er en hunderase og" + super.snakk(); //super henter fra moderobjektet
+        }
+      }
+
+      class Katt extends Husdyr {
+        snakk() {
+          return " sier mjau";
+        }
+      }
+
+      let h = new Hund("Fido");
+      let k = new Katt("Mons");
+      let r = new Rottweiler("Raggen");
+
+      document.getElementById("utdata").innerHTML =
+        h.navn +
+        h.snakk() +
+        "<br>" +
+        k.navn +
+        k.snakk() +
+        "<br>" +
+        r.navn +
+        r.snakk() +
+        "<br>";
+    </script>
+  </body>
+</html>

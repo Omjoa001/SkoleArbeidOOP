@@ -1,8 +1,14 @@
-class Boble {
-  constructor(x, y, r) {
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+canvas.addEventListener("mousedown", musklikk, false);
+canvas.addEventListener("mousemove", musbeveg, false);
+
+class Objekt {
+  constructor(x, y, r, h) {
     this.x = x;
     this.y = y;
     this.r = r;
+    this.h = h
     let randomFarge = `rgb(
       ${Math.floor(Math.random() * 255)},
       ${Math.floor(Math.random() * 255)},
@@ -13,6 +19,12 @@ class Boble {
   flytt() {
     this.x = this.x + Math.round(Math.random() * 10 - 5);
     this.y = this.y + Math.round(Math.random() * 10 - 5);
+  }
+}
+
+class Boble extends Objekt {
+  constructor (x,y,r) {
+    super(x,y,r)
   }
   vis() {
     ctx.beginPath();
@@ -52,21 +64,44 @@ class Boble {
   }
 }
 
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-canvas.addEventListener("mousedown", musklikk, false);
-canvas.addEventListener("mousemove", musbeveg, false);
+class Firkanter extends Objekt {
+  constructor (x,y,r,h) {
+    super(x,y,r,h)
+  }
+  vis() {
+    ctx.beginPath();
+    //ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+    ctx.rect(this.x, this.y, this.r, )
+    ctx.fillStyle = this.farge;
+    ctx.fill();
+    ctx.strokeStyle = "white";
+    ctx.stroke();
+  }
+  inneholder(musx, musy) {
+    let a = musx - this.x;
+    let b = musy - this.y;
+    let d = Math.sqrt(a * a + b * b);
 
-var bobler = [];
+    if (d < this.r) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  posisjon() {
 
-for (let i = 0; i < 10; i++) {
+  }
+}
+let bobler = [];
+
+for (let i = 0; i < 3; i++) {
   let x = Math.floor(Math.random() * canvas.width);
   let y = Math.floor(Math.random() * canvas.height);
   let r = Math.floor(Math.random() * 40 + 10);
   bobler[i] = new Boble(x, y, r);
 }
 
-setInterval(tegn, 100);
+//setInterval(tegn, 100);
 
 let nyBoble = () => {
   let r = Math.floor(Math.random() * 40 + 10);

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="no" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Promises</title>
+  </head>
+  <body>
+<script>
+  let glad = true;
+
+  let nyMobil = new Promise((resolve,reject) => {
+    if (glad) {
+      let mobil = {
+        merke: "Pocophone",
+        farge: "Svart"
+      }
+      resolve(mobil)
+    } else {
+      let grunn = new Error('mamma er ikke glad'); //spør om new Error(glad = false)
+      reject(grunn);
+    }
+  }
+  )
+
+let showOff = (mobil) => {
+  return new Promise(function(resolve,reject) {
+    let melding = "Ny mobil yall" + mobil.farge + ' ' + mobil.merke + " mobil av mamma!";
+    resolve(message)
+  })
+}
+
+
+// let p = new Promise (function(resolve,reject){kodeher})
+let sierMamma = function() {
+  nyMobil
+  .then(showOff)
+  .then(funtion(fulfilled) {
+    console.log(fulfilled)
+  })
+  .catch((error) => {
+    console.log("Det ble ingen mobil - " + error.message);
+  })
+}
+
+sierMamma();
+
+</script>
+  </body>
+</html>

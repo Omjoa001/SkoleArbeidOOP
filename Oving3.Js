@@ -68,7 +68,7 @@ class Boble extends Objekt {
   }
 }
 
-class Firkanter extends Objekt {
+class Firkant extends Objekt {
   constructor (x,y,r,h) {
     super(x,y,r,h)
   }
@@ -100,7 +100,9 @@ class Firkanter extends Objekt {
 }
 
 let bobler = [];
+let firkanter = [];
 
+let bobleKnapp = () => {
 for (let i = 0; i < 3; i++) {
   let x = Math.floor(Math.random() * canvas.width);
   let y = Math.floor(Math.random() * canvas.height);
@@ -163,7 +165,6 @@ function musbeveg(event) {
   }
 }
 
-let firkanter = [];
 
 for (let i = 0; i < 3; i++) {
   let x = Math.floor(Math.random() * canvas.width);
@@ -184,6 +185,6 @@ let nyFirkant = () => {
     h,
     b
   );
-  bobler.push(b);
+  firkanter.push(b);
 };
-setInterval(nyBoble, 2000);
+setInterval(nyFirkant, 2000);

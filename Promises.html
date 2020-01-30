@@ -21,17 +21,25 @@
     }
   }
   )
-
-let showOff = (mobil) => {
+async function showOff(mobil) {
   return new Promise(function(resolve,reject) {
     let melding = "Ny mobil yall" + mobil.farge + ' ' + mobil.merke + " mobil av mamma!";
     resolve(message)
   })
 }
-
-
 // let p = new Promise (function(resolve,reject){kodeher})
-let sierMamma = function() {
+
+async function sierMamma() {
+  console.log("Før jeg har spurt mamma:");
+  try {
+    let mobil = await nyMobil
+    let melding = await showOff(mobil)
+    console.log(melding);
+  } catch(error) {
+    console.log(error.message);
+  }
+}
+  /*
   nyMobil
   .then(showOff)
   .then(funtion(fulfilled) {
@@ -40,10 +48,12 @@ let sierMamma = function() {
   .catch((error) => {
     console.log("Det ble ingen mobil - " + error.message);
   })
+  console.log("Etter jeg har spurt mamma");
 }
-
+*/
 sierMamma();
-
+//Promise.all
+//Promise.race([promise1,promise2].then(function(value){console.log(value)}))
 </script>
-  </body>
+</body>
 </html>

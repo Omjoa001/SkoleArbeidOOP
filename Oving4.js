@@ -19,7 +19,7 @@ let tall = () => {
    console.log(feil);
  })
 */
-let ord = ["a", "B", "c", "D", "e", "F"];
+let ord = ["a", "X", "g", "b", "C", "d", "F"];
 
 let lagStoreBokstaver = () => {
   return new Promise((resolve, reject) => {
@@ -52,6 +52,9 @@ lagStoreBokstaver()
 
 let sorterBokstaver = () => {
   return new Promise((resolve, reject) => {
-    ord.sort();
+    resolve(ord.sort());
   });
 };
+sorterBokstaver().then(verdi => {
+  console.log(verdi);
+});

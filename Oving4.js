@@ -21,31 +21,31 @@ let tall = () => {
 */
 let ord = ["a", "B", "c", "D", "e", "F"];
 
-let o = () => {
+let lagStoreBokstaver = () => {
   return new Promise((resolve, reject) => {
     let ingenTall = true;
-
-    let i = () => {
-      ord.forEach(item => {
-        if (typeof item != "string") {
-          ingenTall = false;
-        }
-      });
-    };
+    ord.forEach(item => {
+      if (!isNaN(Number(item))) {
+        ingenTall = false;
+      }
+    });
 
     if (ingenTall) {
-      ord.forEach(item => {
-        item.toLowerCase();
-      });
+      for (var i = 0; i < ord.length; i++) {
+        ord.splice(i, 1, ord[i].toLowerCase());
+      }
       resolve(ord);
+    } else {
+      let grunn = new Error("Muligens tall i ordlistenS");
+      reject(grunn);
     }
   });
 };
 
-o()
+lagStoreBokstaver()
   .then(verdi => {
-    console.log(verdi);
+    console.log("verdi " + verdi);
   })
   .catch(feil => {
-    console.log(feil);
+    console.log("reject: " + feil);
   });

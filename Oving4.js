@@ -32,7 +32,7 @@ let lagStoreBokstaver = () => {
 
     if (ingenTall) {
       for (var i = 0; i < ord.length; i++) {
-        ord.splice(i, 1, ord[i].toLowerCase());
+        ord.splice(i, 1, ord[i].toUpperCase());
       }
       resolve(ord);
     } else {
@@ -49,3 +49,9 @@ lagStoreBokstaver()
   .catch(feil => {
     console.log("reject: " + feil);
   });
+
+let sorterBokstaver = () => {
+  return new Promise((resolve, reject) => {
+    ord.sort();
+  });
+};

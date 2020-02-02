@@ -9,5 +9,5 @@ function fetchUsers() {
 }
 fetchUsers().then(verdi => {
   bilde.src = verdi.avatar_url;
-  console.log(verdi.avatar_url);
+  bilde.alt = verdi.name;
 });

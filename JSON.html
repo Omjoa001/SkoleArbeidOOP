@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="no" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+    let person = {navn:"Jonas", alder: 26, by: "Trondheim"};
+    let tekst = JSON.stringify(person);
+    localStor age.setItem("testJSON", tekst);
+
+    window.location = "behandle_json.php?x=" + tekst
+
+    //Med jQuery
+    $.getJSON("ajax/test.json",function(data)
+    {
+      let items = []
+      $.each(data, function(key,val)
+      //MIME type json
+
+
+      //Eksempel på løkke i JSON-objekter
+      let person, i , x = "";
+      person {
+        "navn":"Jonas",
+        "alder":26,
+        "biler": ["Ford", "BMW", "Fiat"]
+      }
+      for ( i in person.biler ) {
+        x += person.biler[i] + "<br>"
+      }
+      document.getElementById("utdata").innerHTML = x;
+    </script>
+  </body>
+</html>

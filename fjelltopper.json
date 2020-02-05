@@ -1,4 +1,137 @@
-{"fjelltopper":[
-  {"fylke":"Akershus", "fjell":"Fjellsjøkampen", "høyde":812},
-   {"fylke":"Buskerud", "fjell":"Folarskardnuten", "høyde":1933},
-   {"fylke":"Oppland", "fjell":"Galdhøpiggen", "høyde": 2469}, {"fylke":"Telemark", "fjell":"Gaustatoppen", "høyde": 1883}, {"fylke":"Hordaland", "fjell":"Hardangerjøkulen", "høyde": 1861}, {"fylke":"Nord-Trøndelag", "fjell":"Jetnamsklumpen", "høyde": 1512}, {"fylke":"Troms", "fjell":"Jiehkkevárri", "høyde": 1834}, {"fylke":"Oslo", "fjell":"Kjerkeberget", "høyde": 630}, {"fylke":"Nordland", "fjell":"Oksskolten", "høyde": 1915}, {"fylke":"More og Romsdal", "fjell":"Pyttegga", "høyde": 1999}, {"fylke":"Hedmark", "fjell":"Rondslottet", "høyde": 2178}, {"fylke":"Ostfold", "fjell":"Slavasshøgda", "høyde": 336}, {"fylke":"Sogn og Fjordane", "fjell":"Store Skagastølstinden", "høyde": 2405}, {"fylke":"Sor-Trøndelag", "fjell":"Storskrymten", "høyde": 1985}, {"fylke":"Aust-Agder", "fjell":"Sæbyggjenuten", "høyde": 1507}, {"fylke":"Vest-Agder", "fjell":"Urdalsknuten", "høyde": 1433}, {"fylke":"Rogaland", "fjell":"Vassdalseggi", "høyde": 1658}, {"fylke":"Vestfold", "fjell":"Vestfjellet", "høyde": 634}, {"fylke":"Finnmark", "fjell":"Øksfjordjøkelen", "høyde": 1191}]}
+{
+  "fjelltopper": [
+    {
+      "fylke": "Akershus",
+      "fjell": "Fjellsjøkampen",
+      "høyde": 812,
+      "lat": 60.450422,
+      "lng": 10.949742
+    },
+    {
+      "fylke": "Buskerud",
+      "fjell": "Folarskardnuten",
+      "høyde": 1933,
+      "lat": 60.607498,
+      "lng": 7.782437
+    },
+    {
+      "fylke": "Oppland",
+      "fjell": "Galdhøpiggen",
+      "høyde": 2469,
+      "lat": 61.666498,
+      "lng": 8.362297
+    },
+    {
+      "fylke": "Telemark",
+      "fjell": "Gaustatoppen",
+      "høyde": 1883,
+      "lat": 59.85507,
+      "lng": 8.648999
+    },
+    {
+      "fylke": "Hordaland",
+      "fjell": "Hardangerjøkulen",
+      "høyde": 1861,
+      "lat": 60.590709,
+      "lng": 7.387718
+    },
+    {
+      "fylke": "Nord-Trøndelag",
+      "fjell": "Jetnamsklumpen",
+      "høyde": 1512,
+      "lat": 65.131742,
+      "lng": 14.191486
+    },
+    {
+      "fylke": "Troms",
+      "fjell": "Jiehkkevárri",
+      "høyde": 1834,
+      "lat": 69.469969,
+      "lng": 19.877286
+    },
+    {
+      "fylke": "Oslo",
+      "fjell": "Kjerkeberget",
+      "høyde": 630,
+      "lat": 60.136209,
+      "lng": 19.877801
+    },
+    {
+      "fylke": "Nordland",
+      "fjell": "Oksskolten",
+      "høyde": 1915,
+      "lat": 66.017569,
+      "lng": 14.33299
+    },
+    {
+      "fylke": "More og Romsdal",
+      "fjell": "Pyttegga",
+      "høyde": 1999,
+      "lat": 62.215665,
+      "lng": 7.694653
+    },
+    {
+      "fylke": "Hedmark",
+      "fjell": "Rondslottet",
+      "høyde": 2178,
+      "lat": 61.91567,
+      "lng": 9.850643
+    },
+    {
+      "fylke": "Ostfold",
+      "fjell": "Slavasshøgda",
+      "høyde": 336,
+      "lat": 59.684455,
+      "lng": 11.733333
+    },
+    {
+      "fylke": "Sogn og Fjordane",
+      "fjell": "Store Skagastølstinden",
+      "høyde": 2405,
+      "lat": 61.464828,
+      "lng": 7.874307
+    },
+    {
+      "fylke": "Sor-Trøndelag",
+      "fjell": "Storskrymten",
+      "høyde": 1985,
+      "lat": 62.37459,
+      "lng": 9.060743
+    },
+    {
+      "fylke": "Aust-Agder",
+      "fjell": "Sæbyggjenuten",
+      "høyde": 1507,
+      "lat": 59.462507,
+      "lng": 7.624302
+    },
+    {
+      "fylke": "Vest-Agder",
+      "fjell": "Urdalsknuten",
+      "høyde": 1433,
+      "lat": 59.164051,
+      "lng": 7.157537
+    },
+    {
+      "fylke": "Rogaland",
+      "fjell": "Vassdalseggi",
+      "høyde": 1658,
+      "lat": 59.767353,
+      "lng": 7.116838
+    },
+    {
+      "fylke": "Vestfold",
+      "fjell": "Vestfjellet",
+      "høyde": 634,
+      "lat": 58.863142,
+      "lng": 8.254166
+    },
+    {
+      "fylke": "Finnmark",
+      "fjell": "Øksfjordjøkelen",
+      "høyde": 1191,
+      "lat": 70.16866,
+      "lng": 22.062663
+    }
+  ]
+}

@@ -4,18 +4,30 @@
     <style>
       /* Set the size of the div element that contains the map */
       #map {
-        height: 400px; /* The height is 400 pixels */
-        width: 100%; /* The width is the width of the web page */
+        float: left;
+        display: inline-block;
+        height: 800px; /* The height is 400 pixels */
+        width: 80%; /* The width is the width of the web page */
+      }
+      #utdata {
+        float: left;
+        display: inline-block;
+        width: 20%;
+      }
+      #boks {
+        border: 1px solid black;
+        overflow: hidden;
       }
     </style>
     <meta charset="utf-8" />
     <title>Oppgave 5</title>
   </head>
   <body>
-    <div id="utdata"></div>
-    <div id="map"></div>
+    <div id="boks">
+      <div id="utdata"></div>
+      <div id="map"></div>
+    </div>
     <!--API KEY: AIzaSyA-ctAbBpKuTO2nAD7dJDJO3vGo_88IBfI -->
-    <button type="button" name="button"></button>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script
       async

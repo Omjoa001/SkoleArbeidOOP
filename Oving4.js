@@ -19,7 +19,7 @@ let tall = () => {
    console.log(feil);
  })
 */
-let ord = ["a", "X", "g", "b", "C", "d", "F"];
+let ord = ["aFDGHJK", "X", "g", "b", "C", "d", "F"];
 
 let lagStoreBokstaver = () => {
   return new Promise((resolve, reject) => {

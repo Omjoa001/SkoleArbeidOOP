@@ -43,3 +43,4 @@ function initMap() {
     let marker = new google.maps.Marker({ position: markertFjell[i], map: map });
   }
 }
+chjage;

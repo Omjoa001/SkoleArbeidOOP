@@ -24,7 +24,7 @@ let lagRad = (i,data) => {
   document.getElementById("tabellHTML").appendChild(rad)
 }
 
-let markertFjell = [{lat: 60.45038, lng: 10.949903 },{ lat: 59.767205, lng: 7.116667 }]
+let markertFjell = []
 
 
 let visTopp = (x,y) => {
@@ -38,8 +38,7 @@ initMap()
 
 function initMap() {
   // The location of fjelltopp
-  var fjellet = { lat: 60.45038, lng: 10.949903 };
-  var fjellet2 = { lat: 59.767205, lng: 7.116667 };
+  var fjellet = { lat: 64.542481, lng: 12.751662 };
   // The map, centered at fjell
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,

@@ -7,3 +7,6 @@ class test {
 }
 https://drive.google.com/open?id=1VPw7aELPvNzO5adHzqq7VpxWavLpYwV5koAUObZIQBw
 https://drive.google.com/open?id=1ZZfDknKyNnBXJKZUsARubHKGm5OX1q6D
+
+Ny userliste:
+https://docs.google.com/spreadsheets/d/1VPw7aELPvNzO5adHzqq7VpxWavLpYwV5koAUObZIQBw/edit?usp=sharing

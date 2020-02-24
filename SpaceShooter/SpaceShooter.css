@@ -9,8 +9,8 @@ body {
   position: relative;
 }
 #romskip {
-  bottom: 4%;
-  left: 50%;
+  bottom: 40px;
+  left: 400px;
   display: inline-block;
   width: 60px;
   height: 80px;

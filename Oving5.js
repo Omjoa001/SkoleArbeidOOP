@@ -1,5 +1,5 @@
 $.getJSON("https://api.myjson.com/bins/ozbqi", data => {
-  data.fjelltopper.sort((a, b) => (a.høyde > b.høyde ? 1 : -1));
+  data.fjelltopper.sort((a, b) => (a.høyde < b.høyde ? 1 : -1));
   for (var i = 0; i < data.fjelltopper.length; i++) {
     lagRad(i,data)
   }

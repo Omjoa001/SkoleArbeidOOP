@@ -1,0 +1,19 @@
+body {
+  text-align: center;
+}
+#spillBoks {
+  display: inline-block;
+  width: 800px;
+  height: 800px;
+  background-color: grey;
+  position: relative;
+}
+#romskip {
+  bottom: 40px;
+  left: 400px;
+  display: inline-block;
+  width: 60px;
+  height: 80px;
+  background-color: navy;
+  position: absolute;
+}

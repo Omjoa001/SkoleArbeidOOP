@@ -4,7 +4,7 @@ document.addEventListener("keydown", beveg);
 function beveg(event) {
   var tast = event.keyCode;
   if (tast == 32) {
-    console.log("spacebar");
+    lagLaser(parseInt(getComputedStyle(romskip).getPropertyValue("left")));
     //32 er spacebar.
     // 39 er right arrow. 37 er left arrow
   } else if (tast == 37) {
@@ -26,3 +26,12 @@ function beveg(event) {
     );
   }
 }
+
+let lagLaser = posisjon => {
+  let nyLaser = document.createElement("div");
+  nyLaser.setAttribute("class", "laserClass");
+  nyLaser.style.left = posisjon;
+  console.log(nyLaser);
+
+  document.getElementById("spillboks").appendChild(nyLaser);
+};

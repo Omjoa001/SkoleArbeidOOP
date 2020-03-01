@@ -19,7 +19,7 @@ body {
   position: absolute;
 }
 .laserClass {
-  bottom: 60px;
+  bottom: 120px;
   display: inline-block;
   width: 10px;
   height: 30px;

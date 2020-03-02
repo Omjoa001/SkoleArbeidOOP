@@ -20,13 +20,6 @@ function beveg(event) {
         parseInt(getComputedStyle(romskip).getPropertyValue("width"))
         ? parseInt(getComputedStyle(spillBoks).getPropertyValue("width"))
         : current + 20 + "px";
-<<<<<<< HEAD
-  } else if (tast == 37) {
-    let current = parseInt(getComputedStyle(romskip).getPropertyValue("left"));
-    romskip.style.left =
-      current <= 0 ? 0 : current - 20 + "px";
-=======
->>>>>>> 3655dbdcf60d39c1538df06c1df95fd4c8d5cad1
   } else {
     console.log(
       "Spillkontroller: Høyre og venstre bil for bevegelse. SpaceBar for å skyte"

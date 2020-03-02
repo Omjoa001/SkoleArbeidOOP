@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  background-color: black;
 }
 #spillBoks {
   display: inline-block;
@@ -15,5 +16,13 @@ body {
   width: 60px;
   height: 80px;
   background-color: navy;
+  position: absolute;
+}
+.laserClass {
+  bottom: 120px;
+  display: inline-block;
+  width: 10px;
+  height: 30px;
+  background-color: green;
   position: absolute;
 }

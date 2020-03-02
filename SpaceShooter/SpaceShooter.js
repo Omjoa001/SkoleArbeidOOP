@@ -4,7 +4,7 @@ document.addEventListener("keydown", beveg);
 function beveg(event) {
   var tast = event.keyCode;
   if (tast == 32) {
-    console.log("spacebar");
+    lagLaser();
     //32 er spacebar.
     // 39 er right arrow. 37 er left arrow
   } else if (tast == 37) {
@@ -20,9 +20,28 @@ function beveg(event) {
         parseInt(getComputedStyle(romskip).getPropertyValue("width"))
         ? parseInt(getComputedStyle(spillBoks).getPropertyValue("width"))
         : current + 20 + "px";
+  } else if (tast == 37) {
+    let current = parseInt(getComputedStyle(romskip).getPropertyValue("left"));
+    romskip.style.left = current <= 0 ? 0 : current - 20 + "px";
   } else {
     console.log(
       "Spillkontroller: Høyre og venstre bil for bevegelse. SpaceBar for å skyte"
     );
   }
 }
+
+let lagLaser = () => {
+  let nyLaser = document.createElement("div");
+  nyLaser.setAttribute("class", "laserClass");
+  nyLaser.setAttribute(
+    "style",
+    "left:" +
+      (parseInt(getComputedStyle(romskip).getPropertyValue("left")) +
+        parseInt(getComputedStyle(romskip).getPropertyValue("width")) / 2 -
+        5) +
+      "px"
+  );
+  console.log(parseInt(getComputedStyle(romskip).getPropertyValue("width")));
+  //getElemntsByClassName() kan brukes for å slette eksisterende lasere
+  document.getElementById("spillBoks").appendChild(nyLaser);
+};

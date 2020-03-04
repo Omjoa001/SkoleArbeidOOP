@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <html lang="no" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Promises</title>
   </head>
   <body>
-<script>
-  let glad = true;
+    <script>
+      let glad = true;
 
-  let nyMobil = new Promise((resolve,reject) => {
-    if (glad) {
-      let mobil = {
-        merke: "Pocophone",
-        farge: "Svart"
+      let nyMobil = new Promise((resolve, reject) => {
+        if (glad) {
+          let mobil = {
+            merke: "Pocophone",
+            farge: "Svart"
+          };
+          resolve(mobil);
+        } else {
+          let grunn = new Error("mamma er ikke glad"); //spør om new Error(glad = false)
+          reject(grunn);
+        }
+      });
+      async function showOff(mobil) {
+        return new Promise(function(resolve, reject) {
+          let melding =
+            "Ny mobil yall" +
+            mobil.farge +
+            " " +
+            mobil.merke +
+            " mobil av mamma!";
+          resolve(message);
+        });
       }
-      resolve(mobil)
-    } else {
-      let grunn = new Error('mamma er ikke glad'); //spør om new Error(glad = false)
-      reject(grunn);
-    }
-  }
-  )
-async function showOff(mobil) {
-  return new Promise(function(resolve,reject) {
-    let melding = "Ny mobil yall" + mobil.farge + ' ' + mobil.merke + " mobil av mamma!";
-    resolve(message)
-  })
-}
-// let p = new Promise (function(resolve,reject){kodeher})
+      // let p = new Promise (function(resolve,reject){kodeher})
 
-async function sierMamma() {
-  console.log("Før jeg har spurt mamma:");
-  try {
-    let mobil = await nyMobil
-    let melding = await showOff(mobil)
-    console.log(melding);
-  } catch(error) {
-    console.log(error.message);
-  }
-}
-  /*
+      async function sierMamma() {
+        console.log("Før jeg har spurt mamma:");
+        try {
+          let mobil = await nyMobil;
+          let melding = await showOff(mobil);
+          console.log(melding);
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
+      /*
   nyMobil
   .then(showOff)
   .then(funtion(fulfilled) {
@@ -51,9 +55,9 @@ async function sierMamma() {
   console.log("Etter jeg har spurt mamma");
 }
 */
-sierMamma();
-//Promise.all
-//Promise.race([promise1,promise2].then(function(value){console.log(value)}))
-</script>
-</body>
+      sierMamma();
+      //Promise.all
+      //Promise.race([promise1,promise2].then(function(value){console.log(value)}))
+    </script>
+  </body>
 </html>

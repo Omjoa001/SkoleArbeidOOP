@@ -44,4 +44,14 @@ let lagLaser = () => {
   console.log(parseInt(getComputedStyle(romskip).getPropertyValue("width")));
   //getElemntsByClassName() kan brukes for å slette eksisterende lasere
   document.getElementById("spillBoks").appendChild(nyLaser);
+
+  //følgende funksjon for å flytte på laserobjektet som er lagd
+  flyttLaser(nyLaser);
+};
+let flyttLaser = x => {
+  let teller = parseInt(getComputedStyle(x).getPropertyValue("bottom"));
+  setInterval(() => {
+    teller += 2;
+    x.style.bottom = teller + "px";
+  }, 10);
 };

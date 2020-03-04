@@ -25,7 +25,7 @@ function beveg(event) {
     romskip.style.left = current <= 0 ? 0 : current - 20 + "px";
   } else {
     console.log(
-      "Spillkontroller: Høyre og venstre bil for bevegelse. SpaceBar for å skyte"
+      "Spillkontroller: Høyre og venstre pil for bevegelse. SpaceBar for å skyte"
     );
   }
 }
@@ -52,6 +52,11 @@ let flyttLaser = x => {
   let teller = parseInt(getComputedStyle(x).getPropertyValue("bottom"));
   setInterval(() => {
     teller += 2;
+    //dersom man endrer på hvor mye teller plusses med går laser fortere.
     x.style.bottom = teller + "px";
-  }, 10);
+  }, 1); //kan også endre på hvor ofte teller oppdateres. satt på minst mulig verdi her siden det ser mer smooth ut (bare å teste selv)
+};
+
+let lagUFO = () => {
+  let alien;
 };

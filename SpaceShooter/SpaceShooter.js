@@ -45,3 +45,9 @@ let lagLaser = () => {
   //getElemntsByClassName() kan brukes for å slette eksisterende lasere
   document.getElementById("spillBoks").appendChild(nyLaser);
 };
+
+function flytt() {
+  let elementer = document.getElementsByClassName("laserClass")
+  console.log("feil");
+}
+let flyttLaser = setInterval(flytt(),100)

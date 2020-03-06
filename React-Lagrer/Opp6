@@ -1,0 +1,59 @@
+import * as React from 'react';
+import { Component } from 'react-simplified';
+import ReactDOM from 'react-dom';
+import { NavLink, HashRouter, Route } from 'react-router-dom';
+
+class Menu extends Component {
+  render() {
+    return (
+      <div>
+        Menu:
+        <NavLink to="/">CV</NavLink>
+        <br />
+        <NavLink to="/interesser">Interesser</NavLink>
+        <br />
+        <NavLink to="/utdanning">Utdanning</NavLink>
+        <br />
+        <NavLink to="/arbeidserfaring">Arbeidserfaring</NavLink>
+      </div>
+
+    );
+  }
+}
+
+class CV extends Component {
+  render() {
+    return <div>CV her</div>;
+  }
+}
+
+class Int extends Component {
+  render() {
+    return <div>Interesser her</div>;
+  }
+}
+
+class Utd extends Component {
+  render() {
+    return <div>Utdanning her</div>;
+  }
+}
+
+class Arb extends Component {
+  render() {
+    return <p>Jobbet her og der </p>
+  }
+}
+
+ReactDOM.render(
+  <HashRouter>
+    <div>
+      <Menu />
+      <Route exact path="/" component={CV} />
+      <Route path="/interesser" component={Int} />
+      <Route path="/utdanning" component={Utd} />
+      <Route path="/arbeidserfaring" component={Arb} />
+    </div>
+  </HashRouter>,
+  document.getElementById('root')
+);

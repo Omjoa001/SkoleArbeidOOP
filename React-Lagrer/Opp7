@@ -1,0 +1,114 @@
+import * as React from 'react';
+import { Component } from 'react-simplified';
+import ReactDOM from 'react-dom';
+import { NavLink, HashRouter, Route } from 'react-router-dom';
+import { pool } from './mysql_pool';
+
+class Menu extends Component {
+  render() {
+    return (
+      <div>
+        <NavLink exact to="/" activeStyle={{ color: 'white' }}>
+          StudAdm
+        </NavLink>
+        {' ' /* Add extra space between menu items */}
+        <NavLink to="/students" activeStyle={{ color: 'white' }}>
+          Students
+        </NavLink>
+        {' '}
+        <NavLink to="/studie" activeStyle={{ color: 'white' }}>
+          Studie
+        </NavLink>
+      </div>
+    );
+  }
+}
+
+class Home extends Component {
+  render() {
+    return <div style={{ color: 'white' }}>Welcome to StudAdm</div>;
+  }
+}
+
+class StudentList extends Component {
+  students = [];
+
+  render() {
+    return (
+      <ul>
+        {this.students.map(student => (
+          <li key={student.id}>
+            <NavLink to={'/students/' + student.id} style={{ color: 'white' }}>{student.name}</NavLink>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  mounted() {
+    pool.query('SELECT id, name FROM Students', (error, results) => {
+      if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+      this.students = results;
+    });
+  }
+}
+
+class StudentDetails extends Component {
+  student = null;
+
+  render() {
+    if (!this.student) return null;
+
+    return (
+      <ul style={{ color: 'white' }}>
+        <li>Name: {this.student.name}</li>
+        <li>Email: {this.student.email}</li>
+      </ul>
+    );
+  }
+
+  mounted() {
+    pool.query('SELECT name, email FROM Students WHERE id=?', [this.props.match.params.id], (error, results) => {
+      if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+      this.student = results[0];
+    });
+  }
+}
+
+class StudieList extends Component {
+  studie = []
+
+  render () {
+    return (
+      <ul>
+      {this.studie.map(students => (
+        <li key={studie.id}>
+        <NavLink to={"studie/"+studie.id}>{studie.navn}</NavLink>
+        </li>
+      ))})
+      </ul>
+    )
+  }
+  mounted() {
+      pool.query('SELECT navn, kode FROM Studie', (error, results) => {
+        if (error) return console.error(error); // If error, show error in console (in red text) and return
+        this.studie = results;
+      })
+  }
+}
+
+
+ReactDOM.render(
+  <HashRouter>
+    <div>
+      <Menu />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/students" component={StudentList} />
+      <Route exact path="/students/:id" component={StudentDetails} />
+      <Route exact path="/studie/" component={StudieList} />
+    </div>
+  </HashRouter>,
+  document.getElementById('root')
+);

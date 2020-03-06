@@ -65,13 +65,13 @@ class StudentDetails extends Component {
       <ul style={{ color: 'red' }}>
         <li>Name: {this.student.name}</li>
         <li>Email: {this.student.email}</li>
-        <li>Studie: {this.student.StudieID}</li>
+        <li>Studie: {this.student.navn}</li>
       </ul>
     );
   }
 
   mounted() {
-    pool.query('SELECT Studenter.name, Studenter.email, Studie.id FROM Studenter, Studie WHERE Studenter.StudieID=Studie.id', [this.props.match.params.id], (error, results) => {
+    pool.query('SELECT Studenter.name, Studenter.email, Studie.navn FROM Studenter, Studie WHERE Studenter.StudieID=Studie.id AND Studenter.id=?', [this.props.match.params.id], (error, results) => {
       if (error) return console.error(error); // If error, show error in console (in red text) and return
 
       this.student = results[0];
@@ -113,15 +113,13 @@ class StudieDetails extends Component {
       <ul style={{ color: 'red' }}>
         <li>Navn: {this.studien.navn}</li>
         <li>Kode: {this.studien.kode}</li>
-        <li>ID: {this.studien.id}</li>
+        <li>Elever: {this.studien.name}</li>
       </ul>
     );
   }
-
   mounted() {
-    pool.query('SELECT navn, kode, id FROM Studie WHERE id=?', [this.props.match.params.id], (error, results) => {
+    pool.query('SELECT navn, kode, name FROM Studie, Studenter WHERE Studie.id=Studenter.StudieID AND Studie.id=?', [this.props.match.params.id], (error, results) => {
       if (error) return console.error(error); // If error, show error in console (in red text) and return
-
       this.studien = results[0];
     });
   }

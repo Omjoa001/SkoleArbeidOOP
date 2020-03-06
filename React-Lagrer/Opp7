@@ -8,17 +8,18 @@ class Menu extends Component {
   render() {
     return (
       <div>
-        <NavLink exact to="/" activeStyle={{ color: 'white' }}>
+        <NavLink exact to="/" activeStyle={{ color: 'red' }}>
           StudAdm
         </NavLink>
         {' ' /* Add extra space between menu items */}
-        <NavLink to="/students" activeStyle={{ color: 'white' }}>
+        <NavLink to="/studenter" activeStyle={{ color: 'red' }}>
           Students
         </NavLink>
         {' '}
-        <NavLink to="/studie" activeStyle={{ color: 'white' }}>
+        <NavLink to="/studie" activeStyle={{ color: 'red' }}>
           Studie
         </NavLink>
+        {' '}
       </div>
     );
   }
@@ -26,7 +27,7 @@ class Menu extends Component {
 
 class Home extends Component {
   render() {
-    return <div style={{ color: 'white' }}>Welcome to StudAdm</div>;
+    return <div style={{ color: 'red' }}>Velkommen</div>;
   }
 }
 
@@ -38,7 +39,7 @@ class StudentList extends Component {
       <ul>
         {this.students.map(student => (
           <li key={student.id}>
-            <NavLink to={'/students/' + student.id} style={{ color: 'white' }}>{student.name}</NavLink>
+            <NavLink to={'/studenter/' + student.id} style={{ color: 'red' }}>{student.name}</NavLink>
           </li>
         ))}
       </ul>
@@ -46,7 +47,7 @@ class StudentList extends Component {
   }
 
   mounted() {
-    pool.query('SELECT id, name FROM Students', (error, results) => {
+    pool.query('SELECT id, name FROM Studenter', (error, results) => {
       if (error) return console.error(error); // If error, show error in console (in red text) and return
 
       this.students = results;
@@ -61,15 +62,16 @@ class StudentDetails extends Component {
     if (!this.student) return null;
 
     return (
-      <ul style={{ color: 'white' }}>
+      <ul style={{ color: 'red' }}>
         <li>Name: {this.student.name}</li>
         <li>Email: {this.student.email}</li>
+        <li>Studie: {this.student.StudieID}</li>
       </ul>
     );
   }
 
   mounted() {
-    pool.query('SELECT name, email FROM Students WHERE id=?', [this.props.match.params.id], (error, results) => {
+    pool.query('SELECT Studenter.name, Studenter.email, Studie.id FROM Studenter, Studie WHERE Studenter.StudieID=Studie.id', [this.props.match.params.id], (error, results) => {
       if (error) return console.error(error); // If error, show error in console (in red text) and return
 
       this.student = results[0];
@@ -78,36 +80,61 @@ class StudentDetails extends Component {
 }
 
 class StudieList extends Component {
-  studie = []
+  studie = [];
 
-  render () {
+  render() {
     return (
-      <ul>
-      {this.studie.map(students => (
-        <li key={studie.id}>
-        <NavLink to={"studie/"+studie.id}>{studie.navn}</NavLink>
-        </li>
-      ))})
+      <ul style={{color : 'red'}}>
+        {this.studie.map(linje => (
+          <li style={{color: 'red'}} key={linje.id}>
+           <NavLink to={"/studie/"+linje.id} style={{ color: 'red' }}>{linje.navn}</NavLink>
+          </li>
+        ))}
       </ul>
-    )
+    );
   }
+
   mounted() {
-      pool.query('SELECT navn, kode FROM Studie', (error, results) => {
-        if (error) return console.error(error); // If error, show error in console (in red text) and return
-        this.studie = results;
-      })
+    pool.query('SELECT id, navn FROM Studie', (error, results) => {
+      if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+      this.studie = results;
+    });
   }
 }
 
+class StudieDetails extends Component {
+  studien = null;
 
+  render() {
+    if (!this.studien) return null;
+
+    return (
+      <ul style={{ color: 'red' }}>
+        <li>Navn: {this.studien.navn}</li>
+        <li>Kode: {this.studien.kode}</li>
+        <li>ID: {this.studien.id}</li>
+      </ul>
+    );
+  }
+
+  mounted() {
+    pool.query('SELECT navn, kode, id FROM Studie WHERE id=?', [this.props.match.params.id], (error, results) => {
+      if (error) return console.error(error); // If error, show error in console (in red text) and return
+
+      this.studien = results[0];
+    });
+  }
+}
 ReactDOM.render(
   <HashRouter>
     <div>
       <Menu />
       <Route exact path="/" component={Home} />
-      <Route exact path="/students" component={StudentList} />
-      <Route exact path="/students/:id" component={StudentDetails} />
+      <Route exact path="/studenter" component={StudentList} />
+      <Route exact path="/studenter/:id" component={StudentDetails} />
       <Route exact path="/studie/" component={StudieList} />
+      <Route exact path="/studie/:id" component={StudieDetails} />
     </div>
   </HashRouter>,
   document.getElementById('root')

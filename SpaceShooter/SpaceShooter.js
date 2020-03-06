@@ -65,4 +65,3 @@ function flytt() {
   let elementer = document.getElementsByClassName("laserClass")
   console.log("feil");
 }
-let flyttLaser = setInterval(flytt(),100)

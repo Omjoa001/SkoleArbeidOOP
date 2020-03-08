@@ -111,16 +111,16 @@ class StudieDetails extends Component {
 
     return (
       <ul style={{ color: 'red' }}>
-        <li>Navn: {this.studien.navn}</li>
-        <li>Kode: {this.studien.kode}</li>
-        <li>Elever: {this.studien.name}</li>
+        <li>Navn: {this.studien[0].navn}</li>
+        <li>Kode: {this.studien[0].kode}</li>
+        <li>Elever: {(this.studien).map(x => {return (x.name)}).join(', ')}</li>
       </ul>
     );
   }
   mounted() {
     pool.query('SELECT navn, kode, name FROM Studie, Studenter WHERE Studie.id=Studenter.StudieID AND Studie.id=?', [this.props.match.params.id], (error, results) => {
       if (error) return console.error(error); // If error, show error in console (in red text) and return
-      this.studien = results[0];
+      this.studien = results;
     });
   }
 }

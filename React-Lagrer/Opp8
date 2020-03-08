@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { studentService } from './services';
+import { studieService } from './services';
 import { createHashHistory } from 'history';
 
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
@@ -12,11 +13,15 @@ class Menu extends Component {
     return (
       <div>
         <NavLink exact to="/" activeStyle={{ color: 'darkblue' }}>
-          StudAdm
+          StudAdmx
         </NavLink>
         {' ' /* Add extra space between menu items */}
         <NavLink to="/students" activeStyle={{ color: 'darkblue' }}>
           Students
+        </NavLink>
+        {' '}
+        <NavLink to="/studie" activeStyle={{ color: 'darkblue' }}>
+          Studie
         </NavLink>
       </div>
     );
@@ -91,12 +96,77 @@ class StudentEdit extends Component {
   }
 }
 
+//legger til følgende for Studievisning
+
+class StudieList extends Component {
+  studier = [];
+  render() {
+    return (
+      <ul>
+        {this.studier.map(studie => (
+          <li key={studie.id}>
+            <NavLink to={'/studie/' + studie.id + '/edit'}>{studie.navn}</NavLink>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  mounted() {
+    studieService.getStudier(studier => {
+      this.studier = studier;
+    });
+  }
+}
+
+class StudieEdit extends Component {
+  studie = null;
+
+  render() {
+    if (!this.studie) return null;
+
+    return (
+      <div>
+        Name:{' '}
+        <input
+          type="text"
+          value={this.studie.navn}
+          onChange={event => (this.studie.navn = event.currentTarget.value)}
+        />
+        Kode:{' '}
+        <input
+          type="text"
+          value={this.studie.kode}
+          onChange={event => (this.studie.kode = event.currentTarget.value)}
+        />
+        <button type="button" onClick={this.save}>
+          Save
+        </button>
+      </div>
+    );
+  }
+
+  mounted() {
+    studieService.getStudie(this.props.match.params.id, studie => {
+      this.studie = studie;
+    });
+  }
+
+  save() {
+    studieService.updateStudie(this.studie, () => {
+      history.push('/studie');
+    });
+  }
+}
+*/
 ReactDOM.render(
   <HashRouter>
     <Menu />
     <Route exact path="/" component={Home} />
     <Route exact path="/students" component={StudentList} />
     <Route path="/students/:id/edit" component={StudentEdit} />
+    <Route exact path="/studie" component={StudieList} />
+    <Route path="/studie/:id/edit" component={StudieEdit} />
   </HashRouter>,
   document.getElementById('root')
 );

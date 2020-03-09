@@ -19,8 +19,19 @@ class StudentService {
 
   updateStudent(student, success) {
     pool.query(
-      'UPDATE Studenter SET name=?, email=? WHERE id=?',
-      [student.name, student.email, student.id],
+      'UPDATE Studenter SET name=?, email=?, StudieID=? WHERE id=?',
+      [student.name, student.email, student.StudieID, student.id],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success();
+      }
+    );
+  }
+  deleteStudent(student, success) {
+    pool.query(
+      'DELETE FROM Studenter WHERE id=?',
+      [student.id],
       (error, results) => {
         if (error) return console.error(error);
 
@@ -52,6 +63,17 @@ class StudieService {
     pool.query(
       'UPDATE Studie SET navn=?, kode=? WHERE id=?',
       [studie.navn, studie.kode, studie.id],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success();
+      }
+    );
+  }
+  deleteStudie(studie, success) {
+    pool.query(
+      'DELETE FROM Studie WHERE id=?',
+      [studie.id],
       (error, results) => {
         if (error) return console.error(error);
 

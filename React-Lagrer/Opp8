@@ -12,15 +12,15 @@ class Menu extends Component {
   render() {
     return (
       <div>
-        <NavLink exact to="/" activeStyle={{ color: 'darkblue' }}>
+        <NavLink exact to="/" activeStyle={{ color: 'red' }}>
           StudAdmx
         </NavLink>
         {' ' /* Add extra space between menu items */}
-        <NavLink to="/students" activeStyle={{ color: 'darkblue' }}>
+        <NavLink to="/students" activeStyle={{ color: 'red' }}>
           Students
         </NavLink>
         {' '}
-        <NavLink to="/studie" activeStyle={{ color: 'darkblue' }}>
+        <NavLink to="/studie" activeStyle={{ color: 'red' }}>
           Studie
         </NavLink>
       </div>
@@ -76,13 +76,23 @@ class StudentEdit extends Component {
           value={this.student.email}
           onChange={event => (this.student.email = event.currentTarget.value)}
         />
+        {/*UPDATE Studenter SET StudieID =1 WHERE id=?*/}
+        Velg studie:{' '}
+        <select value={this.student.StudieID} onChange={event => (this.student.StudieID = Number(event.currentTarget.value))}>
+        <option value='1'>DIGSEC</option>
+        <option value='2'>DIGFOR</option>
+        </select>
+        {<br />}{<br />}
         <button type="button" onClick={this.save}>
           Save
+        </button>
+        {<br />}
+        <button type="button" onClick={this.delete}>
+          Delete
         </button>
       </div>
     );
   }
-
   mounted() {
     studentService.getStudent(this.props.match.params.id, student => {
       this.student = student;
@@ -91,6 +101,11 @@ class StudentEdit extends Component {
 
   save() {
     studentService.updateStudent(this.student, () => {
+      history.push('/students');
+    });
+  }
+  delete() {
+    studentService.deleteStudent(this.student, () => {
       history.push('/students');
     });
   }
@@ -139,8 +154,13 @@ class StudieEdit extends Component {
           value={this.studie.kode}
           onChange={event => (this.studie.kode = event.currentTarget.value)}
         />
+        {<br />}
         <button type="button" onClick={this.save}>
           Save
+        </button>
+        {<br />}
+        <button type="button" onClick={this.delete}>
+          Delete
         </button>
       </div>
     );
@@ -153,6 +173,11 @@ class StudieEdit extends Component {
 
   save() {
     studieService.updateStudie(this.studie, () => {
+      history.push('/studie');
+    });
+  }
+  delete() {
+    studieService.deleteStudie(this.studie, () => {
       history.push('/studie');
     });
   }

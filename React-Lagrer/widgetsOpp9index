@@ -1,0 +1,54 @@
+import * as React from 'react';
+import { Component } from 'react-simplified';
+import ReactDOM from 'react-dom';
+import { NavLink, HashRouter, Route } from 'react-router-dom';
+import {Button} from './widgets.js'
+
+class Row extends Component {
+  render() {
+    return (
+      <div className="row">{this.props.children}</div>
+    )
+  }
+}
+
+
+class Column extends Component {
+  render() {
+    return (
+      <div className={'col' + (this.props.width ? '-' + this.props.width: '')}>{this.props.children}</div>
+    )
+  }
+}
+
+class Hello extends Component {
+  render() {
+    /* return (
+    <div>
+          <div className="row">
+              <div className="col-5">Hei</div>
+              <div className="col-10">Oslo</div>
+          </div>
+          <div className="row">
+              <div className="col-4">Hei</div>
+              <div className="col">Bergen</div>
+          </div>
+      </div>
+    )
+    */
+    return(
+      <div>
+      <Row>
+        <Column width={2}>Hei</Column>
+        <Column width={10}>Trondheim</Column>
+      </Row>
+      <Row>
+        <Column width={4}>Hei</Column>
+        <Column>Bergen</Column>
+      </Row>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<Hello /> , document.getElementById('root'))

@@ -114,13 +114,29 @@ let flyttUfo = x => {
 let sjekkTreff = laser => {
   for (var i = 0; i < ufoListe.length; i++) {
     let x = parseInt(getComputedStyle(ufoListe[i]).getPropertyValue("left"));
-    if (x == parseInt(getComputedStyle(laser).getPropertyValue("left"))) {
+    if (
+      x - parseInt(getComputedStyle(laser).getPropertyValue("left")) <= 20 &&
+      x - parseInt(getComputedStyle(laser).getPropertyValue("left")) >= -20
+    ) {
       let y = parseInt(
         getComputedStyle(ufoListe[i]).getPropertyValue("bottom")
       );
-      if (y == parseInt(getComputedStyle(laser).getPropertyValue("bottom"))) {
-        treff();
+      if (
+        /*
+        her sjekker jeg hvis laser og ufo er i omtrent samme posisjon med +-10 px.
+        kan ikke sjekke helt nøyaktig posisjon siden er mer sjanse for error ettersom ting flytter seg flere pixler av gangen
+        */
+        y - parseInt(getComputedStyle(laser).getPropertyValue("bottom")) <=
+          20 &&
+        y - parseInt(getComputedStyle(laser).getPropertyValue("bottom")) >= -20
+      ) {
+        console.log("y stemmer");
+        treff(ufoListe[i]);
       }
     }
   }
+};
+
+let treff = ufo => {
+  ufo.parentElement.removeChild(ufo); //removeChild() fungerer for å fjerne elementet. Må alltid kalle gjennom parent for å bruke
 };

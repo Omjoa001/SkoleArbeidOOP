@@ -85,7 +85,7 @@ let lagUFO = setInterval(() => {
   document.getElementById("spillBoks").appendChild(ufo);
   ufoListe.push(ufo);
   flyttUfo(ufo);
-}, 5000);
+}, 1700);
 
 let flyttUfo = x => {
   //gjenbruker mye av samme koden som for å flytte laser
@@ -102,41 +102,39 @@ let flyttUfo = x => {
       //dersom man endrer på hvor mye teller plusses med går laser fortere.
       x.style.bottom = teller + "px";
     } else {
-      console.log("fjernet");
       let i = ufoListe.indexOf(x); //finner posisjonen til elementet i arrayen
       ufoListe.splice(i, 1); //fjernen elementet fra arrayen. Neste linje sletter selve elementet.
-      x.parentElement.removeChild(x); //removeChild() fungerer for å fjerne elementet. Må alltid kalle gjennom parent for å bruke den
+      /*
+      let slett = isNaN(i) ? x.parentElement.removeChild(x) : "eksisterer ikke"; //removeChild() fungerer for å fjerne elementet. Må alltid kalle gjennom parent for å bruke den
+    */
+      console.log("du tapte");
       clearInterval(bevegelsen);
     }
-  }, 10); //kan
+  }, 10); //kan endre her for å få ufo til å gå saktere. gjør testing av hitbox lettere.
 };
 
 let sjekkTreff = laser => {
   for (var i = 0; i < ufoListe.length; i++) {
     let x = parseInt(getComputedStyle(ufoListe[i]).getPropertyValue("left"));
     if (
-      x - parseInt(getComputedStyle(laser).getPropertyValue("left")) <= 20 &&
-      x - parseInt(getComputedStyle(laser).getPropertyValue("left")) >= -20
+      //måtte leke litt med tallene her for at treff skulle bl registrert riktig basert på x-akse posisjonen.
+      x - parseInt(getComputedStyle(laser).getPropertyValue("left")) <= 10 &&
+      x - parseInt(getComputedStyle(laser).getPropertyValue("left")) >= -40
     ) {
       let y = parseInt(
         getComputedStyle(ufoListe[i]).getPropertyValue("bottom")
       );
       if (
         /*
-        her sjekker jeg hvis laser og ufo er i omtrent samme posisjon med +-10 px.
+        her sjekker jeg hvis laser og ufo er i omtrent samme posisjon med +-20 px.
         kan ikke sjekke helt nøyaktig posisjon siden er mer sjanse for error ettersom ting flytter seg flere pixler av gangen
         */
         y - parseInt(getComputedStyle(laser).getPropertyValue("bottom")) <=
           20 &&
         y - parseInt(getComputedStyle(laser).getPropertyValue("bottom")) >= -20
       ) {
-        console.log("y stemmer");
-        treff(ufoListe[i]);
+        ufoListe[i].parentElement.removeChild(ufoListe[i]);
       }
     }
   }
-};
-
-let treff = ufo => {
-  ufo.parentElement.removeChild(ufo); //removeChild() fungerer for å fjerne elementet. Må alltid kalle gjennom parent for å bruke
 };

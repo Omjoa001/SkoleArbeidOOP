@@ -30,6 +30,9 @@ function beveg(event) {
   }
 }
 
+//let laserListe = [];
+//usikker på om den trenges
+
 let lagLaser = () => {
   let nyLaser = document.createElement("div");
   nyLaser.setAttribute("class", "laserClass");
@@ -41,27 +44,56 @@ let lagLaser = () => {
         5) +
       "px"
   );
-  console.log(parseInt(getComputedStyle(romskip).getPropertyValue("width")));
-  //getElemntsByClassName() kan brukes for å slette eksisterende lasere
   document.getElementById("spillBoks").appendChild(nyLaser);
-
+  //laserListe.push(nyLaser); usikker på om den trengs
   //følgende funksjon for å flytte på laserobjektet som er lagd
   flyttLaser(nyLaser);
 };
+
 let flyttLaser = x => {
   let teller = parseInt(getComputedStyle(x).getPropertyValue("bottom"));
-  setInterval(() => {
-    teller += 2;
-    //dersom man endrer på hvor mye teller plusses med går laser fortere.
-    x.style.bottom = teller + "px";
+  let bevegelsen = setInterval(() => {
+    if (
+      teller <=
+      parseInt(getComputedStyle(spillBoks).getPropertyValue("height")) - 20 //endre på minus tallet der for å endre når laseret fjernes fra spillboksen
+    ) {
+      teller += 2;
+      //dersom man endrer på hvor mye teller plusses med går laser fortere.
+      x.style.bottom = teller + "px";
+    } else {
+      x.parentElement.removeChild(x); //removeChild() fungerer for å fjerne elementet. Må alltid kalle gjennom parent for å bruke den
+      clearInterval(bevegelsen);
+    }
   }, 1); //kan også endre på hvor ofte teller oppdateres. satt på minst mulig verdi her siden det ser mer smooth ut (bare å teste selv)
 };
+//Må prøve å fjerne laserne før jeg kan gå videre på å lage UFOs for å forsikre om at jeg har kontroll på den enheten.
 
-let lagUFO = () => {
-  let alien;
+let lagUFO = setInterval(() => {
+  //gjenbruker lignende kode som for lagLaser
+  let ufo = document.createElement("div");
+  ufo.setAttribute("class", "ufoClass");
+  let plassering =
+    Math.random() * 30 +
+    parseInt(getComputedStyle(spillBoks).getPropertyValue("width")); // plusser med 30 som er bredden til ufo sånn at det ikke ser ut som at den går ut av boksen
+  ufo.setAttribute("style", "left:" + plassering + "px");
+  document.getElementById("spillBoks").appendChild(ufo);
+  flyttUfo(ufo);
+}, 5000);
+
+let flyttUfo = x => {
+  //gjenbruker mye av samme koden som for å flytte laser
+  let teller = parseInt(getComputedStyle(x).getPropertyValue("bottom"));
+  console.log(teller);
+  let bevegelsen = setInterval(() => {
+    if (teller >= 0) {
+      console.log("lagd");
+      teller -= 2;
+      //dersom man endrer på hvor mye teller plusses med går laser fortere.
+      x.style.bottom = teller + "px";
+    } else {
+      console.log("fjernet");
+      x.parentElement.removeChild(x); //removeChild() fungerer for å fjerne elementet. Må alltid kalle gjennom parent for å bruke den
+      clearInterval(bevegelsen);
+    }
+  }, 10); //kan
 };
-
-function flytt() {
-  let elementer = document.getElementsByClassName("laserClass")
-  console.log("feil");
-}

@@ -182,6 +182,7 @@ class StudieEdit extends Component {
     });
   }
 }
+
 ReactDOM.render(
   <HashRouter>
     <Menu />

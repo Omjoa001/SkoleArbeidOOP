@@ -1,0 +1,199 @@
+import * as React from 'react';
+import { Component } from 'react-simplified';
+import ReactDOM from 'react-dom';
+import { NavLink, HashRouter, Route } from 'react-router-dom';
+import { studentService } from './services';
+import { studieService } from './services';
+import { createHashHistory } from 'history';
+import { Button, Card, NavBar,Form, Row, Column} from './widgets.js'
+
+const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
+
+class Menu extends Component {
+  render() {
+    return (
+    <NavBar brand={(location.pathname).split("react-widgets/").pop()}>
+        <NavBar.Link exact to="/">
+          StudAdmx
+        </NavBar.Link>
+        <NavBar.Link to="/students">
+          Students
+        </NavBar.Link>
+        <NavBar.Link to="/studie">
+          Studie
+        </NavBar.Link>
+    </NavBar>
+  )
+  }
+}
+
+class Home extends Component {
+  render() {
+    return <Card title ="Welcome to StudAdm"> An overview of students and studies</Card>;
+  }
+}
+
+class StudentList extends Component {
+  students = [];
+
+  render() {
+    return (
+      <div>
+        {this.students.map(student => (
+          <Row key={student.id}>
+          <Column>
+            <NavLink to={'/students/' + student.id + '/edit'}>{student.name}</NavLink>
+            </Column>
+          </Row>
+        ))}
+      </div>
+    );
+  }
+
+  mounted() {
+    studentService.getStudents(students => {
+      this.students = students;
+    });
+  }
+}
+
+class StudentEdit extends Component {
+  student = null;
+
+  render() {
+    if (!this.student) return null;
+
+    return (
+      <div>
+        Name:{' '}
+        <Form.Input
+          type="text"
+          value={this.student.name}
+          onChange={event => (this.student.name = event.currentTarget.value)}
+        />
+        Email:{' '}
+        <Form.Input
+          type="text"
+          value={this.student.email}
+          onChange={event => (this.student.email = event.currentTarget.value)}
+        />
+        {/*UPDATE Studenter SET StudieID =1 WHERE id=?*/}
+        Velg studie:{' '}
+        <select value={this.student.StudieID} onChange={event => (this.student.StudieID = Number(event.currentTarget.value))}>
+        <option value='1'>DIGSEC</option>
+        <option value='2'>DIGFOR</option>
+        </select>
+        {<br />}{<br />}
+        <Button.Success type="button" onClick={this.save}>
+          Save
+        </Button.Success>
+        {<br />}
+        <Button.Danger type="button" onClick={this.delete}>
+          Delete
+        </Button.Danger>
+      </div>
+    );
+  }
+  mounted() {
+    studentService.getStudent(this.props.match.params.id, student => {
+      this.student = student;
+    });
+  }
+
+  save() {
+    studentService.updateStudent(this.student, () => {
+      history.push('/students');
+    });
+  }
+  delete() {
+    studentService.deleteStudent(this.student, () => {
+      history.push('/students');
+    });
+  }
+}
+
+//legger til følgende for Studievisning
+
+class StudieList extends Component {
+  studier = [];
+  render() {
+    return (
+      <div>
+        {this.studier.map(studie => (
+          <Row key={studie.id}>
+          <Column>
+            <NavLink to={'/studie/' + studie.id + '/edit'}>{studie.navn}</NavLink>
+            </Column>
+          </Row>
+        ))}
+      </div>
+    );
+  }
+
+  mounted() {
+    studieService.getStudier(studier => {
+      this.studier = studier;
+    });
+  }
+}
+
+class StudieEdit extends Component {
+  studie = null;
+
+  render() {
+    if (!this.studie) return null;
+
+    return (
+      <div>
+        Name:{' '}
+        <Form.Input
+          type="text"
+          value={this.studie.navn}
+          onChange={event => (this.studie.navn = event.currentTarget.value)}
+        />
+        Kode:{' '}
+        <Form.Input
+          type="text"
+          value={this.studie.kode}
+          onChange={event => (this.studie.kode = event.currentTarget.value)}
+        />
+        {<br />}
+        <Button.Success type="button" onClick={this.save}>
+          Save
+        </Button.Success>
+        {<br />}
+        <Button.Danger type="button" onClick={this.delete}>
+          Delete
+        </Button.Danger>
+      </div>
+    );
+  }
+  mounted() {
+    studieService.getStudie(this.props.match.params.id, studie => {
+      this.studie = studie;
+    });
+  }
+
+  save() {
+    studieService.updateStudie(this.studie, () => {
+      history.push('/studie');
+    });
+  }
+  delete() {
+    studieService.deleteStudie(this.studie, () => {
+      history.push('/studie');
+    });
+  }
+}
+
+ReactDOM.render(
+  <HashRouter>
+    <Menu />
+    <Route exact path="/" component={Home} />
+    <Route exact path="/students" component={StudentList} />
+    <Route path="/students/:id/edit" component={StudentEdit} />
+    <Route exact path="/studie" component={StudieList} />
+    <Route path="/studie/:id/edit" component={StudieEdit} />
+  </HashRouter>,
+  document.getElementById('root')
+);

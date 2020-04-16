@@ -31,7 +31,6 @@ class StudentService {
       [student.name, student.email, student.id],
       (error, results) => {
         if (error) return console.error(error);
-
         success();
       }
     );

@@ -102,22 +102,28 @@ let flyttUfo = x => {
       //dersom man endrer på hvor mye teller plusses med går laser fortere.
       x.style.bottom = teller + "px";
     } else {
-      let i = ufoListe.indexOf(x); //finner posisjonen til elementet i arrayen
-      ufoListe.splice(i, 1); //fjernen elementet fra arrayen. Neste linje sletter selve elementet.
+      for (var i = 0; i < ufoListe.length; i++) {
+        if (x == ufoListe[i]) {
+          window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }
+      }
+      //let i = ufoListe.indexOf(x); //finner posisjonen til elementet i arrayen
+      //ufoListe.splice(i, 1); //fjernen elementet fra arrayen. Neste linje sletter selve elementet.
+
       /*
       let slett = isNaN(i) ? x.parentElement.removeChild(x) : "eksisterer ikke"; //removeChild() fungerer for å fjerne elementet. Må alltid kalle gjennom parent for å bruke den
     */
-      console.log("du tapte");
+
       clearInterval(bevegelsen);
     }
-  }, 10); //kan endre her for å få ufo til å gå saktere. gjør testing av hitbox lettere.
+  }, 11); //kan endre her for å få ufo til å gå saktere. gjør testing av hitbox lettere.
 };
 
 let sjekkTreff = laser => {
   for (var i = 0; i < ufoListe.length; i++) {
     let x = parseInt(getComputedStyle(ufoListe[i]).getPropertyValue("left"));
     if (
-      //måtte leke litt med tallene her for at treff skulle bl registrert riktig basert på x-akse posisjonen.
+      //måtte leke litt med tallene her for at treff skulle bli registrert riktig basert på x-akse posisjonen.
       x - parseInt(getComputedStyle(laser).getPropertyValue("left")) <= 10 &&
       x - parseInt(getComputedStyle(laser).getPropertyValue("left")) >= -40
     ) {
@@ -134,6 +140,10 @@ let sjekkTreff = laser => {
         y - parseInt(getComputedStyle(laser).getPropertyValue("bottom")) >= -20
       ) {
         ufoListe[i].parentElement.removeChild(ufoListe[i]);
+        ufoListe.splice(i,1)
+        /* hvis ufo blir truffet av laser,fjernes den fra ufolista.
+         Funksjonen flyttUfo() sjekker om ufoer som når bunnen av spillboksen er med i
+         ufolista før den aktiverer tap status. Dvs at å treffe ufo med laser forhindrer tap :) */
       }
     }
   }

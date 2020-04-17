@@ -104,7 +104,9 @@ let flyttUfo = x => {
     } else {
       for (var i = 0; i < ufoListe.length; i++) {
         if (x == ufoListe[i]) {
-          window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+          let x = window.location.pathname
+          console.log(x);
+          //window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
         }
       }
       //let i = ufoListe.indexOf(x); //finner posisjonen til elementet i arrayen

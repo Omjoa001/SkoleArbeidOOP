@@ -9,6 +9,9 @@ body {
   background-color: grey;
   position: relative;
 }
+#poengTeller {
+  color: red;
+}
 #romskip {
   bottom: 40px;
   left: 400px;
